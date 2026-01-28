@@ -1,9 +1,4 @@
-#include "Login and Password.hpp"
-#include <string>
-#include <iostream>
-#include <Windows.h>
-
-
+#include "Login.hpp"
 
 
 
@@ -13,11 +8,11 @@ bool Login()
 
 	while (true)
 	{
-		std::cout << "Введите логин";
-		std::getline(std::cin,login, '\n');
+		std::cout << "\n\nВведите логин: ";
+		std::getline(std::cin, login, '\n');
 
-		std::cout << "Введите пароль";
-		std::getline(std::cin,pass, '\n');
+		std::cout << "\nВведите пароль: ";
+		std::getline(std::cin, pass, '\n');
 
 		for (size_t i = 0; i < userSize; i++)
 		{
@@ -34,7 +29,7 @@ bool Login()
 		Sleep(1200);
 		// to do exit to the programm
 
-		
+
 	}
 }
 
@@ -47,15 +42,16 @@ void Start()
 	{
 		if (currentStatus == userStatus[0])
 		{
-			void SuperAdminMenu();
+			CreateStorage();
+			SuperAdminMenu();
 		}
 		else if (currentStatus == userStatus[1])
 		{
-
+			std::cout << "2\n\n";
 		}
 		else if (currentStatus == userStatus[2])
 		{
-
+			std::cout << "3\n\n";
 		}
 		else
 		{
@@ -72,7 +68,7 @@ void Start()
 void SuperAdminMenu()
 {
 	std::string choose;
-	while ()
+	while (true)
 	{
 		std::cout << "1. Начать продажу\n";
 		std::cout << "2. Показать склад\n";
@@ -83,6 +79,8 @@ void SuperAdminMenu()
 		std::cout << "7. Редактировать сотрудника\n";
 		std::cout << "8. Отчёт о прибыли\n";
 		std::cout << "0. Выйти из учётной записи\n";
+		std::cout << "Ввод: \n";
+		std::getline(std::cin, choose, '\n');
 
 		if (choose == "1")
 		{
@@ -90,7 +88,7 @@ void SuperAdminMenu()
 		}
 		else if (choose == "2")
 		{
-
+			ShowStorage();
 		}
 		else if (choose == "3")
 		{
@@ -131,3 +129,5 @@ void SuperAdminMenu()
 
 	}
 }
+
+
