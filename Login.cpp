@@ -2,6 +2,8 @@
 
 
 
+//---------------------------------------- Проверка логина и пароля --------------------------------------
+
 bool Login()
 {
 	std::string login, pass;
@@ -9,10 +11,10 @@ bool Login()
 	while (true)
 	{
 		std::cout << "\n\nВведите логин: ";
-		std::getline(std::cin, login, '\n');
+		GetLine(login);
 
 		std::cout << "\nВведите пароль: ";
-		std::getline(std::cin, pass, '\n');
+		GetLine(pass);
 
 		for (size_t i = 0; i < userSize; i++)
 		{
@@ -33,6 +35,10 @@ bool Login()
 	}
 }
 
+
+
+
+//---------------------------------------- Приветствие --------------------------------------
 
 void Start()
 {
@@ -65,11 +71,16 @@ void Start()
 	}
 }
 
+
+
+//---------------------------------------- Меню супер-админа --------------------------------------
+
 void SuperAdminMenu()
 {
 	std::string choose;
 	while (true)
 	{
+		system("cls");
 		std::cout << "1. Начать продажу\n";
 		std::cout << "2. Показать склад\n";
 		std::cout << "3. Пополнить товары\n";
@@ -78,8 +89,8 @@ void SuperAdminMenu()
 		std::cout << "6. Редактировать клад\n";
 		std::cout << "7. Редактировать сотрудника\n";
 		std::cout << "8. Отчёт о прибыли\n";
-		std::cout << "0. Выйти из учётной записи\n";
-		std::cout << "Ввод: \n";
+		std::cout << "0. Выйти из учётной записи\n\n";
+		std::cout << "Ввод: ";
 		std::getline(std::cin, choose, '\n');
 
 		if (choose == "1")
@@ -92,15 +103,15 @@ void SuperAdminMenu()
 		}
 		else if (choose == "3")
 		{
-
+			AddProduct();
 		}
 		else if (choose == "4")
 		{
-
+			RemoveProduct();
 		}
 		else if (choose == "5")
 		{
-
+			ChangePrice();
 		}
 		else if (choose == "6")
 		{

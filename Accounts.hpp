@@ -1,8 +1,11 @@
 #ifndef _ACCOUNTS_HPP_
 #define _ACCOUNTS_HPP_
+
 #include <string>
 #include <iomanip>
 #include <iostream>
+
+#include "ServiceFunctions.hpp"
 
 extern size_t userSize;
 extern std::string currentStatus;
