@@ -28,6 +28,9 @@ extern unsigned int minPass;
 extern bool isSetCreated;
 
 void ChangeAccounts();
+void ChangeLogin();
+void ChangePass();
+void ChangeStatus();
 void CreateNewUser();
 void ShowUser(int mode = 0);
 bool CheckLogin(const std::string& chooseLogin);

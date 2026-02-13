@@ -47,16 +47,16 @@ void Start()
 	std::cout << "\n\n\n\t\t\tДобро пожаловать! :3\n\n\t\t\t Книжный магазин \"Литера\"";
 	if (Login())
 	{
-		if (currentStatus == userStatus[0])
+		if (currentStatus == "SuperAdmin")
 		{
 			CreateStorage();
 			SuperAdminMenu();
 		}
-		else if (currentStatus == userStatus[1])
+		else if (currentStatus == "Admin")
 		{
 			std::cout << "2\n\n";
 		}
-		else if (currentStatus == userStatus[2])
+		else if (currentStatus == "User")
 		{
 			std::cout << "3\n\n";
 		}
