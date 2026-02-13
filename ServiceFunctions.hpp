@@ -5,6 +5,10 @@
 #include <iostream>
 #include <Windows.h>
 
+
+//---------------------------------------- Проверка на число --------------------------------------
+
+
 bool IsNumber(const std::string& str);
 
 
@@ -30,7 +34,40 @@ inline void Err(int mode = 0)
 
 }
 
-template<typename ArrType>
-void ArrPushBack(ArrType*& arr, int arrSize);
 
-#endif 
+
+//---------------------------------------- Шаблонная функция для добавления элемента в конец массива --------------------------------------
+
+
+template<typename ArrType>
+inline void ArrPushBack(ArrType*& arr, int arrSize)
+{
+	arrSize++;
+	ArrType* temp = new ArrType[arrSize];
+	for (size_t i = 0; i < arrSize - 1; i++)
+	{
+		temp[i] = arr[i];
+	}
+	std::swap(arr, temp);
+	delete[]temp;
+
+}
+
+template <typename ArrType>
+inline void ArrDeleteByIndex(ArrType*& arr, int arrSize, int index)
+{
+	arrSize--;
+	ArrType* temp = new ArrType[arrSize];
+	for (size_t i = 0, j = 0; i < arrSize; i++, j++)
+	{
+		if (index == j)
+		{
+			j++;
+		}
+		temp[i] = arr[j];
+	}
+	std::swap(arr, temp);
+	delete[]temp;
+}
+
+#endif  

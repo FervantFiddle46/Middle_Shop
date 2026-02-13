@@ -13,6 +13,7 @@ extern bool isStorageCreated;
 extern unsigned int maxStorageSize;
 extern unsigned int currentStorageSize;
 extern double maxPrice;
+extern double currentExpensiveItem;
 
 void CreateStorage();
 
@@ -29,6 +30,13 @@ void ChangeStorage();
 
 void AddNewItem();
 
+void ChangeProductName();
+
+void DeleteItem();
+
+void ChangeStorageLimits();
+
+void CheckExpensiveItem();
 
 template<typename ArrType>
 inline void FillArray(ArrType* dynamicArr, ArrType* staticArr);

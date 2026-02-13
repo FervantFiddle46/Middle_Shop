@@ -43,6 +43,7 @@ bool Login()
 void Start()
 {
 	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
 	std::cout << "\n\n\n\t\t\tДобро пожаловать! :3\n\n\t\t\t Книжный магазин \"Литера\"";
 	if (Login())
 	{
@@ -86,7 +87,7 @@ void SuperAdminMenu()
 		std::cout << "3. Пополнить товары\n";
 		std::cout << "4. Списать товары\n";
 		std::cout << "5. Изменить цены\n";
-		std::cout << "6. Редактировать клад\n";
+		std::cout << "6. Редактировать склад\n";
 		std::cout << "7. Редактировать сотрудника\n";
 		std::cout << "8. Отчёт о прибыли\n";
 		std::cout << "0. Выйти из учётной записи\n\n";
@@ -115,11 +116,11 @@ void SuperAdminMenu()
 		}
 		else if (choose == "6")
 		{
-
+			ChangeStorage();
 		}
 		else if (choose == "7")
 		{
-
+			ChangeAccounts();
 		}
 		else if (choose == "8")
 		{
@@ -131,7 +132,7 @@ void SuperAdminMenu()
 		}
 		else if (choose == "0")
 		{
-
+			
 		}
 		else
 		{
