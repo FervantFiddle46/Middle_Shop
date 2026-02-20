@@ -70,4 +70,4 @@ inline void ArrDeleteByIndex(ArrType*& arr, int arrSize, int index)
 	delete[]temp;
 }
 
-#endif  
+#endif // !_SERVICEFUNCTIONS_HPP_

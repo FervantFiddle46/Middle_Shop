@@ -34,8 +34,9 @@ void ChangeLogin();
 void ChangePass();
 void ChangeStatus();
 void ChangeAwards();
+void DeleteUser();
 bool CheckLogin(const std::string& chooseLogin);
 bool CheckPass(const std::string& choosePass);
 void CreateSet();
 
-#endif 
+#endif // !_ACCOUNTS_HPP_

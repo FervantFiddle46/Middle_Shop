@@ -126,10 +126,7 @@ void SuperAdminMenu()
 		{
 
 		}
-		else if (choose == "9")
-		{
 
-		}
 		else if (choose == "0")
 		{
 			

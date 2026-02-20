@@ -50,4 +50,4 @@ static inline void FillArray(ArrType* dynamicArr, ArrType* staticArr)
 	}
 }
 
-#endif 
+#endif // !_STORAGE_HPP_

@@ -18,6 +18,7 @@ unsigned int maxPass = 20;
 unsigned int minLogin = 5;
 unsigned int minPass = 8;
 
+
 //---------------------------------------- Изменение аккаунтов --------------------------------------
 
 void ChangeAccounts()
@@ -47,11 +48,11 @@ void ChangeAccounts()
 		}
 		else if (choose == "2")
 		{
-			if (currentStatus == userStatus[1])
+			if (currentStatus == "Admin")
 			{
 				ShowUser();
 			}
-			else if (currentStatus == userStatus[0])
+			else if (currentStatus == "SuperAdmin")
 			{
 				ShowUser(1);
 			}
@@ -67,19 +68,43 @@ void ChangeAccounts()
 		}
 		else if (choose == "5")
 		{
-			ChangeStatus();
+			if (userSize > 1)
+			{
+				ChangeStatus();
+			}
+			else
+			{
+				std::cout << "Нет доступных пользователей\n";
+				Sleep(1500);
+			}
 		}
 		else if (choose == "6")
 		{
-			ChangeAwards();
+			if (userSize > 1)
+			{
+				ChangeAwards();
+			}
+			else
+			{
+				std::cout << "Нет доступных пользователей\n";
+				Sleep(1500);
+			}
 		}
 		else if (choose == "7")
 		{
-
+			if (userSize > 1)
+			{
+				DeleteUser();
+			}
+			else
+			{
+				std::cout << "Нет доступных пользователей\n";
+				Sleep(1500);
+			}
 		}
 		else if (choose == "0")
 		{
-			std::cout << "Выход из редактора учётных записей\n";
+			std::cout << "\nВыход из редактора учётных записей\n";
 			Sleep(1500);
 			break;
 		}
@@ -243,14 +268,14 @@ void ShowUser(int mode)
 {
 	system("cls");
 	std::cout << "ID" << "\tЛогин\t" << std::left << std::setw(maxLogin - 2)
-		<< "\t\tПароль" << "Роль" << "\n";
+		<< "\t\tПароль" << "\tРоль" << "\t\t\tСумма продаж" << "\t\tШтрафы" << "\n";
 	if (mode == 0)
 	{
 		for (size_t i = 1; i < userSize; i++)
 		{
 			std::cout << userId[i] << "\t" << std::left << std::setw(maxLogin) << logArr[i]
-				<< "\t" << passArr[i] << "\t\t" << userStatus[i] << "\n";
-
+				<< "\t" << std::setw(maxPass / 1.5) << passArr[i] << "\t\t" << std::setw(maxLogin) << userStatus[i] << "\t"
+				<< awardArr[i] << "\t\t\t" << fineArr[i] << "\n";
 		}
 	}
 	else if (mode == 1)
@@ -258,7 +283,8 @@ void ShowUser(int mode)
 		for (size_t i = 0; i < userSize; i++)
 		{
 			std::cout << userId[i] << "\t" << std::left << std::setw(maxLogin) << logArr[i]
-				<< "\t" << passArr[i] << "\t\t" << userStatus[i] << "\n";
+				<< "\t" << std::setw(maxPass / 1.5) << passArr[i] << "\t\t" << std::setw(maxLogin) << userStatus[i] << "\t" 
+				<< awardArr[i] << "\t\t\t" << fineArr[i] << "\n";
 
 		}
 	}
@@ -747,6 +773,87 @@ void ChangeAwards()
 
 
 
+//---------------------------------------- 7. Удалить аккаунтя --------------------------------------
+
+void DeleteUser()
+{
+	std::string chooseId, choose;
+	int id = 0;
+	while (true)
+	{
+		ShowUser(2);
+
+		std::cout << "\nВведите ID пользователя или \"exit\" для выхода\n\nВвод: ";
+		GetLine(chooseId);
+		if (chooseId == "exit")
+		{
+			std::cout << "Отмена удаления пользователя\n\n";
+			Sleep(1500);
+			break;
+		}
+		else if (IsNumber(chooseId))
+		{
+			id = std::stoi(chooseId);
+			if (id < 1 || id > userSize - 1)
+			{
+				Err();
+			}
+			else if (id == currentId)
+			{
+				std::cout << "Нельзя удалять себя\n";
+			}
+			else
+			{
+				std::cout << "Удалить пользователя " << logArr[id] << "?\n";
+				std::cout << "Для подтверждения введите пароль супер-администратора / \"exit\" для выхода\n\nВвод: ";
+				GetLine(choose);
+				if (choose == "exit")
+				{
+					std::cout << "Отмена\n\n";
+					Sleep(1500);
+				}
+				else if (choose == passArr[0])
+				{
+					if (id < currentId)
+					{
+						--currentId;
+					}
+
+					ArrDeleteByIndex(logArr, userSize, id);
+					ArrDeleteByIndex(passArr, userSize, id);
+					ArrDeleteByIndex(userStatus, userSize, id);
+					ArrDeleteByIndex(awardArr, userSize, id);
+					ArrDeleteByIndex(fineArr, userSize, id);
+					--userSize;
+					for (size_t i = 0; i < userSize; i++)
+					{
+						userId[i] = i;
+					}
+
+					std::cout << "\nИдёт процесс удаления...\n";
+					Sleep(750);
+					std::cout << "Сверяем аккаунты...\n";
+					Sleep(750);
+					std::cout << "Почти справились...\n\n";
+					Sleep(750);
+					std::cout << "Пользователь удалён!\n";
+					Sleep(1500);
+					break;
+				}
+				else
+				{
+					Err();
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
 
 //---------------------------------------- Проверка логина на символы --------------------------------------
 
@@ -785,6 +892,9 @@ bool CheckLogin(const std::string& chooseLogin)
 	return true;
 
 }
+
+
+
 
 
 
@@ -836,6 +946,9 @@ bool CheckPass(const std::string& choosePass)
 		return false;
 	}
 }
+
+
+
 
 
 
