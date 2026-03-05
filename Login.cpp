@@ -96,11 +96,12 @@ void SuperAdminMenu()
 
 		if (choose == "1")
 		{
-
+			Selling();
 		}
 		else if (choose == "2")
 		{
 			ShowStorage();
+			system("pause");
 		}
 		else if (choose == "3")
 		{

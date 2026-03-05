@@ -15,7 +15,9 @@ extern double cashbox;
 
 
 
-void Seeling();
+void Selling();
+void PrintCheck(const double totalSum);
+void CheckArrDeleter();
 
 
 

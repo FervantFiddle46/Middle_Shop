@@ -76,7 +76,6 @@ void ShowStorage(int mode)
 			std::cout << idArr[i] << "\t" << std::left << std::setw(60) << nameArr[i] << "\t\t" << countArr[i] << "\t\t" << priceArr[i] << "\t|\n";
 		}
 		std::cout << "-----------------------------\n\n";
-		system("pause");
 	}
 	else if (mode == 1)
 	{

@@ -7,6 +7,7 @@
 #include <unordered_set>
 
 #include "ServiceFunctions.hpp"
+#include "Sellings.hpp"
 
 extern size_t userSize;
 extern std::string currentStatus;

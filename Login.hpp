@@ -7,6 +7,7 @@
 
 #include "Accounts.hpp"
 #include "Storage.hpp"
+#include "ServiceFunctions.hpp"
 
 bool Login();
 
