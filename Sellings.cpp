@@ -16,8 +16,9 @@ double cashbox = 15000;
 
 void Selling()
 {
+	srand(time(NULL));
 	std::string choose, chooseId, chooseCount, chooseCash;
-	int id = 0, count = 0;
+	int id = 0, count = 0, cardChance = 0, sleepTimer;
 	double totalSum = 0.0, money = 0.0;
 	size_t index = 0;
 	checkSize = 0;
@@ -43,6 +44,7 @@ void Selling()
 				GetLine(choose);
 				if (choose == "1")
 				{
+					system("cls");
 					system("cls");
 					std::cout << "Выберите способ оплаты\n1 - Наличными\n2 - Безнал\n\nВвод: ";
 					GetLine(choose);
@@ -74,20 +76,53 @@ void Selling()
 								cashbox += totalSum;
 								cashIncome += totalSum;
 								system("cls");
-								break;
 							}
 						}
 					}
 					else if (choose == "2")
 					{
+						while (true)
+						{
+							cardChance = rand() % 100 + 1;
+							sleepTimer = 150;
+							std::cout << "Приложите карту\n";
+							system("pause");
+							if (cardChance <= 10)
+							{
+								for (size_t i = 0; i < 5; i++)
+								{
+									std::cout << i + 1 << " ";
+									Sleep(sleepTimer);
+									sleepTimer -= 30;
+									Beep(400, 800);
+								}
+								std::cout << "\n\nОшибка чтения карты. Пожалуйста, приложите карту повторно\n\n";
+								Sleep(1500);
+							}
+							else
+							{
+								for (size_t i = 0; i < 5; i++)
+								{
+									std::cout << i + 1 << " ";
+									Sleep(sleepTimer);
+									sleepTimer -= 30;
+									Beep(500, 800);
+								}
+								std::cout << "\n\nОплата прошла успешно!\n\n";
+								Sleep(1500);
+								nonCashIncome += totalSum;
+								break;
+							}
 
+						}
 					}
 					else if (choose == "EpohaBezKnig" || choose == "epohabezknig")
 					{
 						std::cout << "Книги изъяты\n";
 						Sleep(1500);
 						system("cls");
-						break;
+						CheckArrDeleter();
+						return;
 					}
 					else
 					{
@@ -177,6 +212,11 @@ void Selling()
 
 }
 
+
+
+
+//---------------------------------------- Печать чека --------------------------------------
+
 void PrintCheck(double totalSum)
 {
 	system("cls");
@@ -189,6 +229,12 @@ void PrintCheck(double totalSum)
 	std::cout << "-----------------------------\n\nИтого к оплате: " << totalSum << "\n\n";
 	system("pause");
 }
+
+
+
+
+
+//---------------------------------------- Удаление чека --------------------------------------
 
 void CheckArrDeleter()
 {
